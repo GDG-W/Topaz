@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>DevFest Lagos - Track Waitlist</title>
+  </head>
+  <body>
+    <section class="form-body container main-form-body">
+      <header>
+        <img src="./assets/logo.svg" alt="DevFest Logo" class="logo" />
+      </header>
+      <h1>DevFest Lagos Track Waitlist</h1>
+      <p>
+        The first 50 people to fill this form will get an early bird ticket
+        invite before others
+      </p>
+      <form class="form main-form" id="form">
+        <label for="full-name" class="main-label"
+          >Full name&nbsp;<span class="asterisk">*</span></label
+        >
+        <input
+          type="text"
+          id="full-name"
+          name="full_name"
+          class="main-input"
+          placeholder="Enter full name"
+          required
+        />
+
+        <label for="email" class="main-label"
+          >Email Address&nbsp;<span class="asterisk">*</span></label
+        >
+        <input
+          type="text"
+          id="email
+          "
+          name="email"
+          required
+          class="main-input"
+          placeholder="Enter email address"
+        />
+        <label for="exp-level" class="main-label"
+          >What is your current experience level in tech&nbsp;<span
+            class="asterisk"
+            >*</span
+          ></label
+        >
+        <div class="dropdown">
+          <div class="dropdown-display main-input dropdown-arrow">
+            <span class="input"> Select level</span>
+            <input
+              type="hidden"
+              required
+              name="experience_level"
+              id="experience_level"
+            />
+            <img src="./assets/arrow-down.svg" alt="-" class="" />
+          </div>
+          <div class="main-input hide-dropdown dropdown-list">
+            <p data-value="beginner">
+              Beginner - 0-1 year experience, just starting out
+            </p>
+            <p data-value="mid-level">
+              Mid-level - 1-4 years experience, comfortable with most tools
+            </p>
+            <p data-value="senior">
+              Senior - 4+ years, possibly leading projects or mentoring others
+            </p>
+          </div>
+        </div>
+        <label for="role" class="main-label"
+          >Current Role / Occupation/ Job Title&nbsp;<span class="asterisk"
+            >*</span
+          ></label
+        >
+        <p>Choose all that apply</p>
+        <div class="input-grid">
+          <label for=""><input type="checkbox" /> Software Engineer</label>
+        </div>
+        <input
+          type="text"
+          placeholder="Enter Other"
+          class="main-input input-disabled"
+          disabled
+        />
+        <label for="role" class="main-label"
+          >Tracks of interest&nbsp;<span class="asterisk">*</span></label
+        >
+        <p>Choose all that apply</p>
+        <div class="interest-list"></div>
+        <input
+          type="text"
+          class="main-input"
+          disabled
+          placeholder="Enter Other"
+        />
+        <label for="" class="main-label"
+          >For the tracks you selected, what specifically are you hoping to
+          learn or experience?&nbsp;<span class="asterisk">*</span></label
+        >
+        <textarea
+          class="main-input"
+          name="learning_goals"
+          id=""
+          rows="6"
+          placeholder="Your answer"
+        ></textarea>
+        <label for="" class="main-label"
+          >How did you hear about DevFest Lagos?&nbsp;<span class="asterisk"
+            >*</span
+          ></label
+        >
+        <div class="dropdown">
+          <div class="dropdown-display main-input dropdown-arrow">
+            <span class="input"> Choose answer</span>
+            <input
+              type="hidden"
+              name="heard_about_source"
+              required
+              id="heard_about_source"
+            />
+            <img src="./assets/arrow-down.svg" alt="-" class="" />
+          </div>
+          <div class="main-input hide-dropdown dropdown-list zindex">
+            <p data-value="twitter">Twitter/X</p>
+            <p data-value="whatsapp">Whatsapp Group</p>
+            <p data-value="instagram">Instagram</p>
+            <p data-value="friend-or-colleague">Friend or colleague</p>
+            <p data-value="gdg-lagos-community">GDG Lagos community</p>
+            <p data-value="email">Email</p>
+            <p data-value="other">Other</p>
+          </div>
+        </div>
+        <label for="" class="main-label"
+          >Have you attended DevFest Lagos before?&nbsp;<span class="asterisk"
+            >*</span
+          ></label
+        >
+
+        <div class="dropdown">
+          <div class="dropdown-display main-input dropdown-arrow">
+            <span class="input">Choose answer</span>
+            <input
+              type="hidden"
+              name="previous_attendance"
+              required
+              id="previous_attendance"
+            />
+            <img src="./assets/arrow-down.svg" alt="-" class="" />
+          </div>
+          <div class="main-input hide-dropdown dropdown-list">
+            <p data-value="yes">Yes</p>
+            <p data-value="no">No</p>
+          </div>
+        </div>
+        <label for="" class="main-label"
+          >Would you like to attend hands-on workshops?&nbsp;<span
+            class="asterisk"
+            >*</span
+          ></label
+        >
+
+        <div class="dropdown">
+          <div class="dropdown-display main-input dropdown-arrow">
+            <span class="input">Choose answer</span>
+            <input
+              type="hidden"
+              name="attend_hands_on_workshops"
+              id="attend_hands_on_workshops"
+              required
+            />
+            <img src="./assets/arrow-down.svg" alt="-" class="" />
+          </div>
+          <div class="main-input hide-dropdown dropdown-list">
+            <p data-value="yes">Yes</p>
+            <p data-value="no">No</p>
+            <p data-value="maybe">Maybe</p>
+          </div>
+        </div>
+        <label for="" class="main-label">Any thoughts or feedback?</label>
+        <textarea
+          class="main-input"
+          name="feedback_thoughts"
+          id=""
+          placeholder="Your answer"
+          rows="6"
+        ></textarea>
+        <p class="error-msg hide">Please fill all required fields*</p>
+        <button type="submit" disabled class="btn btn-disabled submit-btn">
+          Submit
+        </button>
+      </form>
+    </section>
+    <!-- Desktop Success View -->
+    <section class="success-container desktop-view success-form-body hide">
+      <div class="success-form">
+        <img src="./assets/success-check.svg" alt="" />
+        <h2>Submission Successful</h2>
+        <p>
+          You have successfully submitted your details. We will be in touch.
+        </p>
+      </div>
+    </section>
+    <!-- Mobile Success View -->
+    <section class="form-body container hide success-form-body">
+      <header>
+        <img src="./assets/logo.svg" alt="DevFest Logo" class="logo" />
+      </header>
+      <form
+        action="
+"
+        class="form success-form"
+      >
+        <img src="./assets/success-check.svg" alt="" />
+        <h2>Submission Successful</h2>
+        <p>
+          You have successfully submitted your details. We will be in touch.
+        </p>
+      </form>
+    </section>
+    <script src="app.js"></script>
+  </body>
+</html>
