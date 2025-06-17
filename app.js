@@ -130,7 +130,7 @@ function handleCheckboxGroup(containerSelector) {
         }
       }
 
-      console.log(formState);
+      // console.log(formState);
       validateForm();
     });
   });
@@ -184,6 +184,8 @@ mainForm.addEventListener("submit", (e) => {
   dataObject.tracks_of_interest = formState.tracks_of_interest;
   dataObject.occupation = formState.occupation;
 
+  // console.log(dataObject)
+
   fetch("https://sapphire.devfest.notkruse.dev/api/waitlist", {
     method: "POST",
     headers: {
@@ -192,13 +194,15 @@ mainForm.addEventListener("submit", (e) => {
     body: JSON.stringify(dataObject),
   })
     .then((response) => {
+      // console.log(response)
       if (!response.ok) {
         throw new Error("An Error Occurred");
       }
       return response.json();
     })
     .then((data) => {
-      console.log("Success:");
+      // console.log(data)
+      // console.log("Success:");
       document.querySelectorAll(".success-form-body").forEach((container) => {
         container.classList.remove("hide");
       });
