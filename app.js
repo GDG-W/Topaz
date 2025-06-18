@@ -192,8 +192,18 @@ mainForm.addEventListener("submit", (e) => {
     body: JSON.stringify(dataObject),
   })
     .then((response) => {
+      const contentType = response.headers.get("content-type") || "";
+
       if (!response.ok) {
-        throw new Error("An Error Occurred");
+        if (contentType.includes("application/json")) {
+          return response.json().then((data) => {
+            throw new Error(data.message || "Unknown server error");
+          });
+        } else {
+          return response.text().then((text) => {
+            throw new Error(text || "Unknown server error");
+          });
+        }
       }
       return response.json();
     })
@@ -210,12 +220,13 @@ mainForm.addEventListener("submit", (e) => {
       }
     })
     .catch((error) => {
-      console.error("Error:", error);
+      console.error("Error:", error.message);
+      errorMsg.classList.remove("hide");
+      errorMsg.textContent = error.message;
     });
 });
 
 document.querySelector(".submit-wrapper").addEventListener("click", (e) => {
-  console.log("ok");
   if (submitBtn.disabled) {
     const isValid = validateForm();
 
@@ -234,8 +245,6 @@ document.querySelector(".submit-wrapper").addEventListener("click", (e) => {
     ) {
       errorMsg.classList.remove("hide");
     }
-
-    // prevent any submission
     e.preventDefault();
   }
 });
