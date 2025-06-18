@@ -184,7 +184,7 @@ mainForm.addEventListener("submit", (e) => {
   dataObject.tracks_of_interest = formState.tracks_of_interest;
   dataObject.occupation = formState.occupation;
 
-  fetch("https://sapphire.devfest.notkruse.dev/api/waitlist", {
+  fetch("https://sapphire-1013705579431.europe-west3.run.app/api/waitlist", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
