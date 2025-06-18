@@ -270,9 +270,13 @@ div.main-input>p {
     border: 0;
     width: 100%;
     font-size: 1rem;
-    padding: 20px 10px;
     font-weight: 500;
     margin: 20px 0;
+}
+
+.submit-wrapper {
+    padding: 20px 10px;
+    width: 100%;
 }
 
 .btn:disabled {
@@ -387,4 +391,8 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
     -webkit-text-fill-color: #000 !important;
     background-color: transparent !important;
+}
+
+.input-error {
+    border-color: var(--red-900);
 }
