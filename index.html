@@ -1,228 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>DevFest Lagos - Track Waitlist</title>
-  </head>
-  <body>
-    <section class="form-body container main-form-body">
-      <header>
-        <img src="./assets/logo.svg" alt="DevFest Logo" class="logo" />
-      </header>
-      <h1>DevFest Lagos Track Waitlist</h1>
-      <p>
-        Be among the first to experience DevFest Lagos! The first 50 people to
-        complete this form will receive exclusive early bird ticket access
-        before the general public 😎
-      </p>
-      <form class="form main-form" id="form">
-        <label for="full-name" class="main-label"
-          >Full Name&nbsp;<span class="asterisk">*</span></label
-        >
-        <input
-          type="text"
-          id="full-name"
-          name="full_name"
-          class="main-input"
-          placeholder="Enter full name"
-          required
-        />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFest Lagos 2025 - The Date is Set</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <label for="email" class="main-label"
-          >Email Address&nbsp;<span class="asterisk">*</span></label
-        >
-        <input
-          type="email"
-          id="email
-          "
-          name="email"
-          required
-          class="main-input"
-          placeholder="Enter email address"
-        />
-        <label for="exp-level" class="main-label"
-          >What is your current experience level in tech&nbsp;<span
-            class="asterisk"
-            >*</span
-          ></label
-        >
-        <div class="dropdown">
-          <div class="dropdown-display main-input dropdown-arrow">
-            <span class="input"> Select level</span>
-            <input
-              type="hidden"
-              required
-              name="experience_level"
-              id="experience_level"
-            />
-            <img src="./assets/arrow-down.svg" alt="-" class="" />
-          </div>
-          <div class="main-input hide-dropdown dropdown-list">
-            <p data-value="beginner">
-              Beginner - 0-1 year experience, just starting out
-            </p>
-            <p data-value="mid-level">
-              Mid-level - 1-4 years experience, comfortable with most tools
-            </p>
-            <p data-value="senior">
-              Senior - 4+ years, possibly leading projects or mentoring others
-            </p>
-          </div>
-        </div>
-        <label for="role" class="main-label"
-          >Current Role / Occupation / Job Title&nbsp;<span class="asterisk"
-            >*</span
-          ></label
-        >
-        <p>Choose all that apply</p>
-        <div class="input-grid">
-          <label for=""><input type="checkbox" /> Software Engineer</label>
-        </div>
-        <input
-          type="text"
-          placeholder="Enter Other"
-          class="main-input input-disabled"
-          disabled
-        />
-        <label for="role" class="main-label"
-          >Tracks of Interest&nbsp;<span class="asterisk">*</span></label
-        >
-        <p>Choose all that apply</p>
-        <div class="interest-list"></div>
-        <input
-          type="text"
-          class="main-input"
-          disabled
-          placeholder="Enter Other"
-        />
-        <label for="" class="main-label"
-          >For the tracks you selected, what specifically are you hoping to
-          learn or experience?&nbsp;<span class="asterisk">*</span></label
-        >
-        <textarea
-          class="main-input"
-          name="learning_goals"
-          id=""
-          rows="6"
-          placeholder="Your answer"
-          required
-        ></textarea>
-        <label for="" class="main-label"
-          >How did you hear about DevFest Lagos?&nbsp;<span class="asterisk"
-            >*</span
-          ></label
-        >
-        <div class="dropdown">
-          <div class="dropdown-display main-input dropdown-arrow">
-            <span class="input"> Choose answer</span>
-            <input
-              type="hidden"
-              name="heard_about_source"
-              required
-              id="heard_about_source"
-            />
-            <img src="./assets/arrow-down.svg" alt="-" class="" />
-          </div>
-          <div class="main-input hide-dropdown dropdown-list zindex">
-            <p data-value="twitter">Twitter / X</p>
-            <p data-value="whatsapp">Whatsapp Group</p>
-            <p data-value="instagram">Instagram</p>
-            <p data-value="friend-or-colleague">Friend or colleague</p>
-            <p data-value="gdg-lagos-community">GDG Lagos community</p>
-            <p data-value="email">Email</p>
-            <p data-value="other">Other</p>
-          </div>
-        </div>
-        <label for="" class="main-label"
-          >Have you attended DevFest Lagos before?&nbsp;<span class="asterisk"
-            >*</span
-          ></label
-        >
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
 
-        <div class="dropdown">
-          <div class="dropdown-display main-input dropdown-arrow">
-            <span class="input">Choose answer</span>
-            <input
-              type="hidden"
-              name="previous_attendance"
-              required
-              id="previous_attendance"
-            />
-            <img src="./assets/arrow-down.svg" alt="-" class="" />
-          </div>
-          <div class="main-input hide-dropdown dropdown-list">
-            <p data-value="yes">Yes</p>
-            <p data-value="no">No</p>
-          </div>
-        </div>
-        <label for="" class="main-label"
-          >Would you like to attend hands-on workshops?&nbsp;<span
-            class="asterisk"
-            >*</span
-          ></label
-        >
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 60px 20px;
+        }
 
-        <div class="dropdown">
-          <div class="dropdown-display main-input dropdown-arrow">
-            <span class="input">Choose answer</span>
-            <input
-              type="hidden"
-              name="attend_hands_on_workshops"
-              id="attend_hands_on_workshops"
-              required
-            />
-            <img src="./assets/arrow-down.svg" alt="-" class="" />
-          </div>
-          <div class="main-input hide-dropdown dropdown-list">
-            <p data-value="yes">Yes</p>
-            <p data-value="no">No</p>
-            <p data-value="maybe">Maybe</p>
-          </div>
-        </div>
-        <label for="" class="main-label">Any thoughts or feedback?</label>
-        <textarea
-          class="main-input"
-          name="feedback_thoughts"
-          id=""
-          placeholder="Your answer"
-          rows="6"
-        ></textarea>
+        .logo {
+            margin-bottom: 80px;
+        }
 
-        <p class="error-msg hide">Please fill all required fields*</p>
-        <button type="submit" disabled class="btn submit-btn">
-          <div class="submit-wrapper">Submit</div>
-        </button>
-      </form>
-    </section>
-    <!-- Desktop Success View -->
-    <section class="success-container desktop-view success-form-body hide">
-      <div class="success-form">
-        <img src="./assets/success-check.svg" alt="" />
-        <h2>Submission Successful</h2>
-        <p>
-          You have successfully submitted your details. We will be in touch.
-        </p>
-      </div>
-    </section>
-    <!-- Mobile Success View -->
-    <section class="form-body container hide success-form-body">
-      <header>
-        <img src="./assets/logo.svg" alt="DevFest Logo" class="logo" />
-      </header>
-      <form
-        action="
-"
-        class="form success-form"
-      >
-        <img src="./assets/success-check.svg" alt="" />
-        <h2>Submission Successful</h2>
-        <p>
-          You have successfully submitted your details. We will be in touch.
-        </p>
-      </form>
-    </section>
-    <script src="app.js"></script>
-  </body>
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .announcement {
+            margin-bottom: 60px;
+        }
+
+        .announcement h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .date {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 40px 0;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+            margin-bottom: 50px;
+        }
+
+        .waitlist-button {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 80px;
+        }
+
+        .waitlist-button:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+
+        .recap-section {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .recap-link {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            font-size: 1rem;
+            padding-bottom: 2px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .recap-link:hover {
+            color: #1a1a1a;
+            border-bottom-color: #1a1a1a;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: #e0e0e0;
+            margin: 60px auto;
+        }
+
+        @media (max-width: 768px) {
+            .announcement h2 {
+                font-size: 2rem;
+            }
+            
+            .date {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 2rem;
+            }
+            
+            .recap-section {
+                flex-direction: column;
+                gap: 30px;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .announcement h2 {
+                font-size: 1.8rem;
+            }
+            
+            .date {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.8rem;
+            }
+            
+            .logo img {
+                height: 50px;
+            }
+            
+            .waitlist-button {
+                padding: 14px 28px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="./assets/logo.svg" alt="DevFest Lagos">
+        </div>
+        
+        <div class="announcement">
+            <h2>THE DATE IS SET.</h2>
+            <div class="date">NOVEMBER 18 — 22, 2025.</div>
+            <div class="subtitle">DEVFEST LAGOS RETURNS.</div>
+            
+            <a href="/waitlist" class="waitlist-button">Join the waitlist</a>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="recap-section">
+            <a href="https://2024.devfestlagos.com" target="_blank" rel="noopener noreferrer" class="recap-link">
+                See 2024 recap
+            </a>
+            
+            <a href="https://2023.devfestlagos.com" target="_blank" rel="noopener noreferrer" class="recap-link">
+                See 2023 recap
+            </a>
+        </div>
+    </div>
+</body>
 </html>
