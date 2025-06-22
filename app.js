@@ -184,6 +184,8 @@ mainForm.addEventListener("submit", (e) => {
   dataObject.tracks_of_interest = formState.tracks_of_interest;
   dataObject.occupation = formState.occupation;
 
+  submitBtn.innerHTML = `<div class="submit-wrapper">Submitting...</div>`;
+  submitBtn.disabled = true;
   fetch("https://sapphire-1013705579431.europe-west3.run.app/api/waitlist", {
     method: "POST",
     headers: {
@@ -193,10 +195,15 @@ mainForm.addEventListener("submit", (e) => {
   })
     .then((response) => {
       const contentType = response.headers.get("content-type") || "";
-
       if (!response.ok) {
         if (contentType.includes("application/json")) {
           return response.json().then((data) => {
+            if (data.errors) {
+              let messages = Object.values(data.errors);
+              messages = messages.join("</br>");
+
+              throw new Error(messages);
+            }
             throw new Error(data.message || "Unknown server error");
           });
         } else {
@@ -220,9 +227,12 @@ mainForm.addEventListener("submit", (e) => {
       }
     })
     .catch((error) => {
-      console.error("Error:", error.message);
+      errorMsg.innerHTML = error.message;
       errorMsg.classList.remove("hide");
-      errorMsg.textContent = error.message;
+    })
+    .finally(() => {
+      submitBtn.innerHTML = `<div class="submit-wrapper">Submit</div>`;
+      submitBtn.disabled = false;
     });
 });
 
