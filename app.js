@@ -12,17 +12,17 @@ dropdownListArrows.forEach((arrow) => {
 const tracksOfInterest = [
   "Dev / Software Engineering",
   "AI",
-  "Design/ UI-UX",
-  "DevOps Engineer/ Site Reliability Engineering",
-  "Security/ Cybersecurity",
+  "Design / UI-UX",
+  "DevOps Engineer / Site Reliability Engineering",
+  "Security / Cybersecurity",
   "Project Management",
   "Machine Learning",
   "Technical Writing",
-  "Career Growth/ Developer Journey",
+  "Career Growth / Developer Journey",
   "Open Source Contributions",
-  "AR/VR",
+  "AR and VR",
   "Starting a Tech Startup",
-  "Public Speaking/ Developer Advocacy",
+  "Public Speaking / Developer Advocacy",
   "Other",
 ];
 
