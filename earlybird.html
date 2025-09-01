@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevFest Lagos 2025 - Buy Tickets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .logo::before {
+            content: "🎪";
+            margin-right: 8px;
+            font-size: 24px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .left-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .claim-link {
+            color: #4285f4;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 30px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .breadcrumb .active {
+            color: #f4b400;
+            font-weight: 500;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            background: #333;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .ticket-types {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .ticket-type {
+            padding: 12px 24px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .ticket-type.active {
+            border-color: #333;
+            background: #333;
+            color: white;
+        }
+
+        .calendar {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .calendar-header {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .day {
+            text-align: center;
+            padding: 16px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            border: 2px solid transparent;
+        }
+
+        .day:hover {
+            background: #f0f0f0;
+        }
+
+        .day.selected {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+
+        .day-name {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .day.selected .day-name {
+            color: #ccc;
+        }
+
+        .day-number {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .ticket-details-section {
+            opacity: 0.5;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .ticket-details-section.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .ticket-details-placeholder {
+            color: #999;
+            font-style: italic;
+        }
+
+        .right-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 20px;
+        }
+
+        .order-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .order-placeholder {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .order-summary {
+            display: none;
+        }
+
+        .order-summary.show {
+            display: block;
+        }
+
+        .selected-date {
+            background: #f0f8ff;
+            border: 1px solid #4285f4;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .selected-date-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .selected-date-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .ticket-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ticket-name {
+            font-weight: 500;
+        }
+
+        .ticket-price {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            font-size: 18px;
+            font-weight: 700;
+            border-top: 2px solid #eee;
+            margin-top: 10px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+
+        .checkout-btn:hover {
+            background: #3367d6;
+        }
+
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .right-section {
+                position: static;
+            }
+
+            .left-section {
+                padding: 20px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .calendar-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="https://devfestlagos.com/assets/logo.svg"/>
+        </header>
+
+        <div class="main-content">
+            <div class="left-section">
+                <h1 class="title">Be a part of the<br>DevFest Lagos 2025 physically!</h1>
+                <nav class="breadcrumb">
+                    <span class="active">Get your early bird ticket</span>
+                </nav>
+
+                <div class="section">
+                    <div class="section-header">
+                        <div class="step-number">1</div>
+                        <h2 class="section-title">Select Date(s)</h2>
+                    </div>
+
+                    <div class="calendar">
+                        <div class="calendar-header">November 2025</div>
+                        <div class="calendar-grid">
+                            <div class="day" data-date="2025-11-18" data-day="Tuesday">
+                                <div class="day-name">Tue</div>
+                                <div class="day-number">18</div>
+                            </div>
+                            <div class="day" data-date="2025-11-19" data-day="Wednesday">
+                                <div class="day-name">Wed</div>
+                                <div class="day-number">19</div>
+                            </div>
+                            <div class="day" data-date="2025-11-20" data-day="Thursday">
+                                <div class="day-name">Thu</div>
+                                <div class="day-number">20</div>
+                            </div>
+                            <div class="day" data-date="2025-11-21" data-day="Friday">
+                                <div class="day-name">Fri</div>
+                                <div class="day-number">21</div>
+                            </div>
+                            <div class="day" data-date="2025-11-22" data-day="Saturday">
+                                <div class="day-name">Sat</div>
+                                <div class="day-number">22</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section ticket-details-section">
+                    <div class="section-header">
+                        <div class="step-number">2</div>
+                        <h2 class="section-title">Ticket Details</h2>
+                    </div>
+                    <div class="ticket-details-placeholder">
+                        Select your ticket date(s) to see ticket details.
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <h3 class="order-title">Order Summary</h3>
+                
+                <div class="order-placeholder">
+                    Select your ticket date(s) to see order summary.
+                </div>
+
+                <div class="order-summary">
+                    <div class="selected-date">
+                        <div class="selected-date-label">Selected Date</div>
+                        <div class="selected-date-value" id="selected-date-display">-</div>
+                    </div>
+
+                    <div class="ticket-item">
+                        <span class="ticket-name" id="ticket-name">Single Day Pass</span>
+                        <span class="ticket-price" id="ticket-price">₦5,000</span>
+                    </div>
+
+                    <div class="total">
+                        <span>Total</span>
+                        <span id="total-price">₦5,000</span>
+                    </div>
+
+                    <button class="checkout-btn" id="checkout-btn" disabled>
+                        Proceed to Payment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State management
+        let selectedDates = [];
+        
+        // Ticket pricing
+        const ticketPrices = {
+            '2025-11-18': 5000,
+            '2025-11-19': 5000,
+            '2025-11-20': 50000,
+            '2025-11-21': 5000,
+            '2025-11-22': 5000
+        };
+
+        // Paystack payment links
+        const paystackLinks = {
+            '2025-11-18': 'https://paystack.com/buy/dflagos25-tuesday',
+            '2025-11-19': 'https://paystack.com/buy/dflagos25-wednesday',
+            '2025-11-20': 'https://paystack.com/buy/dflagos25-thursday',
+            '2025-11-21': 'https://paystack.com/buy/dflagos25-friday',
+            '2025-11-22': 'https://paystack.com/buy/dflagos25-saturday'
+        };
+
+        // DOM elements
+        const days = document.querySelectorAll('.day');
+        const ticketDetailsSection = document.querySelector('.ticket-details-section');
+        const orderPlaceholder = document.querySelector('.order-placeholder');
+        const orderSummary = document.querySelector('.order-summary');
+        const selectedDateDisplay = document.getElementById('selected-date-display');
+        const ticketNameDisplay = document.getElementById('ticket-name');
+        const ticketPriceDisplay = document.getElementById('ticket-price');
+        const totalPriceDisplay = document.getElementById('total-price');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        // Event listeners
+        days.forEach(day => {
+            day.addEventListener('click', () => {
+                const date = day.dataset.date;
+
+                // Toggle selection
+                if (selectedDates.includes(date)) {
+                    selectedDates = selectedDates.filter(d => d !== date);
+                    day.classList.remove('selected');
+                } else {
+                    selectedDates.push(date);
+                    day.classList.add('selected');
+                }
+                
+                if (selectedDates.length > 0) {
+                    showOrderSummary();
+                } else {
+                    orderPlaceholder.style.display = 'block';
+                    orderSummary.classList.remove('show');
+                }
+                updateOrderSummary();
+                enableTicketDetails();
+            });
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            if (selectedDates.length === 1) {
+                const paymentLink = paystackLinks[selectedDates[0]];
+                if (paymentLink) {
+                    window.open(paymentLink, '_blank');
+                } else {
+                    alert('Payment link not configured for this selection.');
+                }
+            } else if (selectedDates.length > 1) {
+                window.open('https://paystack.shop/pay/dflagos25', '_blank');
+            }
+        });
+
+        const ticketDetails = {
+            '2025-11-18': 'Tuesday - Student Edition',
+            '2025-11-19': 'Wednesday - Design & Content Day',
+            '2025-11-20': 'Thursday - Startup & Pro Dev Day',
+            '2025-11-21': 'Friday - Engineering & Infrastructure Day',
+            '2025-11-22': 'Saturday - AI & Cloud Day'
+        };
+
+        // Functions
+        function showOrderSummary() {
+            orderPlaceholder.style.display = 'none';
+            orderSummary.classList.add('show');
+        }
+
+        function enableTicketDetails() {
+            if (selectedDates.length > 0) {
+                ticketDetailsSection.classList.add('active');
+                let detailsHtml = selectedDates.map(date => {
+                    const price = ticketPrices[date];
+                    return `<div>
+                                <strong>${ticketDetails[date]}</strong><br>
+                                <small>${formatDate(date)}</small> - ₦${price.toLocaleString()}
+                            </div>`;
+                }).join('<hr style="margin: 10px 0;">');
+                ticketDetailsSection.querySelector('.ticket-details-placeholder').innerHTML = detailsHtml;
+            } else {
+                ticketDetailsSection.classList.remove('active');
+                ticketDetailsSection.querySelector('.ticket-details-placeholder').innerHTML = 'Select a date to see ticket details.';
+            }
+        }
+
+        function updateOrderSummary() {
+            if (selectedDates.length > 0) {
+                selectedDateDisplay.innerHTML = selectedDates.map(date => `<div>${formatDate(date)}</div>`).join('');
+
+                if (selectedDates.length > 1) {
+                    ticketNameDisplay.textContent = 'Multi-Day Pass';
+                } else {
+                    ticketNameDisplay.textContent = 'Single Day Pass';
+                }
+
+                const total = selectedDates.reduce((acc, date) => acc + ticketPrices[date], 0);
+                ticketPriceDisplay.textContent = `₦${total.toLocaleString()}`;
+                totalPriceDisplay.textContent = `₦${total.toLocaleString()}`;
+                checkoutBtn.disabled = false;
+                checkoutBtn.textContent = 'Proceed to Payment';
+
+            } else {
+                // Reset to placeholder state
+                selectedDateDisplay.textContent = '-';
+                ticketNameDisplay.textContent = 'No ticket selected';
+                ticketPriceDisplay.textContent = '₦0';
+                totalPriceDisplay.textContent = '₦0';
+                checkoutBtn.disabled = true;
+                checkoutBtn.textContent = 'Proceed to Payment';
+                ticketDetailsSection.classList.remove('active');
+                ticketDetailsSection.querySelector('.ticket-details-placeholder').innerHTML = 'Select a date to see ticket details.';
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Initialize
+        updateOrderSummary();
+    </script>
+</body>
+</html>
